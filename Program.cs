@@ -43,11 +43,11 @@ class Program
             while (true)
             {
                 Console.WriteLine($"Make your bet:\n" +
-                    $"enter the letter\n" +
-                    $"V - 3 VERTICAL lines for ${BET_MAX}\n" +      //bet min
-                    $"H - 3 HORIZONTALlines for ${BET_MAX}\n" +   //bet min
-                    $"D - 2 DIAGONAL lines for ${BET_MIN}\n" +    //bet max
-                    $"M - 2 MIDDLE lines for ${BET_MIN}\n");     //bet max
+                $"enter the letter\n" +
+                $"V - 3 VERTICAL lines for ${BET_MAX}\n" +      //bet min
+                $"H - 3 HORIZONTALlines for ${BET_MAX}\n" +   //bet min
+                $"D - 2 DIAGONAL lines for ${BET_MIN}\n" +    //bet max
+                $"M - 2 MIDDLE lines for ${BET_MIN}\n");     //bet max
                 Console.WriteLine($"Current balance ${balance}");
 
                 while (true)
@@ -85,7 +85,7 @@ class Program
                 {
                     balance -= BET_MIN;
                     Console.WriteLine($"New balance: ${balance}");
-  
+
                     if (slotMachine[0, 0] == slotMachine[1, 1]) //are right top and middle cells equal?
                     {
                         if (slotMachine[1, 1] == slotMachine[2, 2]) //are right bottom and middle cells equal?
@@ -193,15 +193,15 @@ class Program
                 if (line_choise == 'M')
                 {
                     balance -= BET_MIN;
-                    if (slotMachine[0,1] == slotMachine[1, 1])
+                    if (slotMachine[0, 1] == slotMachine[1, 1])
                     {
-                        if (slotMachine[1,1] == slotMachine[2, 1])
+                        if (slotMachine[1, 1] == slotMachine[2, 1])
                         {
 
                         }
                     }
 
-            }
+                }
                 if (line_choise == 'V')
                 {
                     balance -= BET_MAX;
