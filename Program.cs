@@ -57,7 +57,6 @@ class Program
                     if (!playChoices.Contains(line_choise))
                     {
                         Console.WriteLine("\nChoose one of the letters above\n");
-                        continue;
                     }
                     else
                     {
