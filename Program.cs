@@ -8,9 +8,6 @@ class Program
     const int BET_MAX = 3;
     const double BET_MIN_WIN = 4;
     const double BET_MAX_WIN = 6;
-    const double WIN_MAX_2LINES = BET_MIN_WIN * 2;
-    const double WIN_MIN_3LINES = BET_MAX_WIN * 3;
-
 
     static void Main(string[] args)
     {
@@ -38,14 +35,14 @@ class Program
         {
             string complimentAtTime = compliment[randomNum.Next(compliment.Count)];
             Console.WriteLine(
-                $"Slot machine has infinite ways for you to win ;) For 1 line you get double of your bet!\nFor each additionall line THE GAIN multiplies!\n");
+                $"Slot machine has infinite ways for you to win ;) For 1 line you get double of your bet!\n");
 
             while (true)
             {
                 Console.WriteLine($"Make your bet:\n" +
                 $"enter the letter\n" +
                 $"V - 3 VERTICAL lines for ${BET_MAX}\n" +      //bet min
-                $"H - 3 HORIZONTALlines for ${BET_MAX}\n" +   //bet min
+                $"H - 3 HORIZONTALlines for ${BET_MAX}\n" +    //bet min
                 $"D - 2 DIAGONAL lines for ${BET_MIN}\n" +    //bet max
                 $"M - 2 MIDDLE lines for ${BET_MIN}\n");     //bet max
                 Console.WriteLine($"Current balance ${balance}");
@@ -85,88 +82,179 @@ class Program
                     balance -= BET_MIN;
                     Console.WriteLine($"New balance: ${balance}");
 
-                    if (slotMachine[0, 0] == slotMachine[1, 1]) //are right top and middle cells equal?
+                    if (slotMachine[0, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 2]) //are right top and middle cells equal?
                     {
-                        if (slotMachine[1, 1] == slotMachine[2, 2]) //are right bottom and middle cells equal?
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
                         {
-                            balance += BET_MIN_WIN;
-                            Console.WriteLine("\n***WIN***\n");
-                            Console.WriteLine($"Current balance ${balance}");
-                            Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
-
-                            playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
-
-                            if (playAgain == 'Y')
-                            {
-                                Console.Clear();
-                                continue;
-                            }
-                            else
-                            {
-                                return;
-                            }
+                            Console.Clear();
+                            continue;
                         }
                         else
                         {
-                            Console.WriteLine($"it's a miss");
-                            Console.WriteLine($"Current balance ${balance}");
-                            Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                            return;
+                        }
+                    }
 
-                            playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+                    if (slotMachine[0, 2] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 0]) //are right bottom and middle cells equall?
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
 
-                            if (playAgain == 'Y')
-                            {
-                                Console.Clear();
-                                continue;
-                            }
-                            else
-                            {
-                                return;
-                            }
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
 
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
                         }
 
                     }
-                    if (slotMachine[0, 2] == slotMachine[1, 1]) //are right bottom and middle cells equall?
+                    else // no 3 in a row matches for diagonals 
                     {
-                        if (slotMachine[1, 1] == slotMachine[2, 0]) //are middle and left bottom selles equal?
+                        Console.WriteLine($"it's a miss");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
                         {
-                            balance += BET_MAX_WIN;
-                            Console.WriteLine("\n***WIN***\n");
-                            Console.WriteLine($"Current balance ${balance}");
-                            Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
-
-                            playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
-
-                            if (playAgain == 'Y')
-                            {
-                                Console.Clear();
-                                continue;
-                            }
-                            else
-                            {
-                                return;
-                            }
-
+                            Console.Clear();
+                            continue;
                         }
-                        else // no 3 in a row matches for diagonals 
+                        else
                         {
-                            Console.WriteLine($"it's a miss");
-                            Console.WriteLine($"Current balance ${balance}");
-                            Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                            return;
+                        }
+                    }
+                }
+                if (line_choise == 'M')
+                {
+                    balance -= BET_MIN;
+                    if (slotMachine[0, 1] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 1])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
 
-                            playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 0] == slotMachine[1, 2])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
 
-                            if (playAgain == 'Y')
-                            {
-                                Console.Clear();
-                                continue;
-                            }
-                            else
-                            {
-                                return;
-                            }
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"it's a miss");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
 
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                }
+                if (line_choise == 'V')
+                {
+                    balance -= BET_MAX;
+                    if (slotMachine[0, 0] == slotMachine[1, 0] && slotMachine[1, 0] == slotMachine[2, 0])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (slotMachine[0, 1] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 1])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (slotMachine[0, 2] == slotMachine[1, 2] && slotMachine[1, 2] == slotMachine[2, 2])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                     else
@@ -189,28 +277,83 @@ class Program
 
                     }
                 }
-                if (line_choise == 'M')
-                {
-                    balance -= BET_MIN;
-                    if (slotMachine[0, 1] == slotMachine[1, 1])
-                    {
-                        if (slotMachine[1, 1] == slotMachine[2, 1])
-                        {
-
-                        }
-                    }
-
-                }
-                if (line_choise == 'V')
-                {
-                    balance -= BET_MAX;
-
-                }
                 if (line_choise == 'H')
                 {
                     balance -= BET_MAX;
+                    if (slotMachine[0, 0] == slotMachine[0, 1] && slotMachine[1, 2] == slotMachine[0, 1])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[1, 2])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    if (slotMachine[2, 0] == slotMachine[2, 1] && slotMachine[2, 1] == slotMachine[2, 2])
+                    {
+                        balance += BET_MIN_WIN;
+                        Console.WriteLine("\n***WIN***\n");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"it's a miss");
+                        Console.WriteLine($"Current balance ${balance}");
+                        Console.WriteLine("\ntry again?: y - to play, any other key to exit \n");
+
+                        playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                        if (playAgain == 'Y')
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        else
+                        {
+                            return;
+                        }
+
+                    }
                 }
-                Console.ReadKey();
             }
         }
 
