@@ -24,8 +24,9 @@ class Program
 
         while (true)
         {
-            Console.WriteLine($"Slot machine has infinite ways for you to win ;) WINNING gets you double of the bet!\n");
-
+            Console.WriteLine($"Slot machine has infinite ways for you to win ;) WINNING gets you double of the bet!\n" +
+            $"EACH winning line gets you even more!");
+      
             while (true)
             {
                 string complimentAtTime = compliment[randomNum.Next(compliment.Count)];
@@ -55,9 +56,9 @@ class Program
                 Console.WriteLine(complimentAtTime + "\n"); //random encouragement for the user to keep interesting
 
                 //printing 3x3 matrix with random number in each cell
-                for (int row = 0; row < slotMachine.Rank + 1; row++)
+                for (int row = 0; row < slotMachine.GetLength(0) ; row++)
                 {
-                    for (int column = 0; column < slotMachine.Rank + 1; column++)
+                    for (int column = 0; column < slotMachine.GetLength(1); column++)
                     {
                         slotMachine[row, column] = randomNum.Next(3);//only including numbers from 0 to 2 
                         Console.Write(slotMachine[row, column] + " ");
