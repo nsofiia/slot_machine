@@ -1,10 +1,10 @@
 ﻿namespace slot_machine;
 class Program
 {
-    const int BET_MIN = 2;    //bets and wins initialized as constants
-    const int BET_MAX = 3;
-    const double BET_MIN_WIN = 4;
-    const double BET_MAX_WIN = 6;
+    const double BET_MIN = 2.0;    //bets and wins initialized as constants
+    const double BET_MAX = 3.0;
+    const double BET_MIN_WIN = 4.0;
+    const double BET_MAX_WIN = 6.0;
 
     public static void firstCheck()
     {
@@ -40,7 +40,7 @@ class Program
         char[] playChoices = new char[4] { 'V', 'H', 'D', 'M' }; // creating betting choices for player to bet on; having "const" in front of the above line is thrwing error, moved to the bottom to have it accesible by the next loop
         char line_choise; //line choice have no value, expected to have input
         List<string> compliment = new List<string> { "Great choise!", "Awesome selection!", "Let's get to it!", "GOOD choise!", "You are a player!" }; //list of encouragements added 
-        double balance = 20; //initial ballance of the player
+        double balance = 20.0; //initial ballance of the player
         char playAgain; //restart option
 
 
@@ -54,12 +54,12 @@ class Program
             {
                 string complimentAtTime = compliment[randomNum.Next(compliment.Count)];
                 int winCount = 0;
-                Console.WriteLine($"Current balance ${balance}\n");
+                Console.WriteLine($"Current balance {balance.ToString("C")}\n");
                 Console.WriteLine($"Make a bet:\n" +
-                $"V - 3 VERTICAL lines for ${BET_MAX}\n" +      //bet min
-                $"H - 3 HORIZONTALlines for ${BET_MAX}\n" +    //bet min
-                $"D - 2 DIAGONAL lines for ${BET_MIN}\n" +    //bet max
-                $"M - 2 MIDDLE lines for ${BET_MIN}\n" +     //bet max
+                $"V - 3 VERTICAL lines for {BET_MAX.ToString("C")}\n" +      //bet min
+                $"H - 3 HORIZONTALlines for {BET_MAX.ToString("C")}\n" +    //bet min
+                $"D - 2 DIAGONAL lines for {BET_MIN.ToString("C")}\n" +    //bet max
+                $"M - 2 MIDDLE lines for {BET_MIN.ToString("C")}\n" +     //bet max
                 $"\nenter your betting choice V, H, D or M\n");
 
 
@@ -100,14 +100,14 @@ class Program
                 {
 
                     balance -= BET_MIN; //removing betting cost
-                    Console.WriteLine($"Balance ${balance}\n");
+                    Console.WriteLine($"Balance {balance.ToString("C")}\n");
 
                     firstCheck();
                     if (slotMachine[0, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 2]) //are right top and middle cells equal?
                     {
                         balance += BET_MIN_WIN;
                         win();
-                        Console.Write($"+ ${BET_MIN_WIN}\n\n");
+                        Console.Write($"+ {BET_MIN_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -120,7 +120,7 @@ class Program
                     {
                         balance += BET_MIN_WIN;
                         win();
-                        Console.Write($"+ ${BET_MIN_WIN}\n\n");
+                        Console.Write($"+ {BET_MIN_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -132,14 +132,14 @@ class Program
                 if (line_choise == 'M')
                 {
                     balance -= BET_MIN;
-                    Console.WriteLine($"Balance ${balance}\n");
+                    Console.WriteLine($"\nBalance {balance.ToString("C")}\n");
 
                     firstCheck();
                     if (slotMachine[0, 1] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[2, 1])
                     {
                         balance += BET_MIN_WIN;
                         win();
-                        Console.Write($"+ ${BET_MIN_WIN}\n\n");
+                        Console.Write($"+ {BET_MIN_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -152,7 +152,7 @@ class Program
                     {
                         balance += BET_MIN_WIN;
                         win();
-                        Console.Write($"+ ${BET_MIN_WIN}\n\n");
+                        Console.Write($"+ {BET_MIN_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -164,14 +164,14 @@ class Program
                 if (line_choise == 'V')
                 {
                     balance -= BET_MAX;
-                    Console.WriteLine($"Balance ${balance}\n");
+                    Console.WriteLine($"Balance {balance.ToString("C")}\n");
 
                     firstCheck();
                     if (slotMachine[0, 0] == slotMachine[1, 0] && slotMachine[1, 0] == slotMachine[2, 0])
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -184,7 +184,7 @@ class Program
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -197,7 +197,7 @@ class Program
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -209,14 +209,14 @@ class Program
                 if (line_choise == 'H')
                 {
                     balance -= BET_MAX;
-                    Console.WriteLine($"Balance ${balance}\n");
+                    Console.WriteLine($"Balance {balance.ToString("C")}\n");
 
                     firstCheck();
                     if (slotMachine[0, 0] == slotMachine[0, 1] && slotMachine[0, 1] == slotMachine[0, 2])
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -229,7 +229,7 @@ class Program
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -242,7 +242,7 @@ class Program
                     {
                         balance += BET_MAX_WIN;
                         win();
-                        Console.Write($"+ ${BET_MAX_WIN}\n\n");
+                        Console.Write($"+ {BET_MAX_WIN.ToString("C")}\n\n");
                         winCount++;
                     }
                     else
@@ -272,7 +272,7 @@ class Program
                     Console.Clear();
                 }
 
-                Console.WriteLine($"New balance ${balance}");
+                Console.WriteLine($"New balance {balance.ToString("C")}");
                 Console.WriteLine("\nTry again?:\ny - to play, \nany other key to exit \n");
 
                 playAgain = Char.ToUpper(Console.ReadKey().KeyChar);
