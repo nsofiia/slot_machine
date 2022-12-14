@@ -80,7 +80,7 @@ class Program
                 {
                     for (int column = 0; column < slotMachine.GetLength(1); column++)
                     {
-                        slotMachine[row, column] = 1;//randomNum.Next(3);    //only including numbers from 0 to 2 
+                        slotMachine[row, column] = randomNum.Next(3);    //only including numbers from 0 to 2 
                         Console.Write(slotMachine[row, column] + " "); //print each cell
                         System.Threading.Thread.Sleep(500);  //wait before printing next one
 
