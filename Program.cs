@@ -83,8 +83,7 @@ class Program
                         slotMachine[row, column] = randomNum.Next(3);    //only including numbers from 0 to 2 
                         Console.Write(slotMachine[row, column] + " "); //print each cell
                         System.Threading.Thread.Sleep(500);  //wait before printing next one
-
-                        if (column == 2) // add new line when finished with a row
+                        if (column == slotMachine.GetUpperBound(0)) // add new line when finished with a row -- when last column index == to last index in the 
                         {
                             Console.WriteLine();
                         }
