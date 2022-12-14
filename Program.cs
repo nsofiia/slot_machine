@@ -80,7 +80,7 @@ class Program
                 {
                     for (int column = 0; column < slotMachine.GetLength(1); column++)
                     {
-                        slotMachine[row, column] = randomNum.Next(3);    //only including numbers from 0 to 2 
+                        slotMachine[row, column] = 1;//randomNum.Next(3);    //only including numbers from 0 to 2 
                         Console.Write(slotMachine[row, column] + " "); //print each cell
                         System.Threading.Thread.Sleep(500);  //wait before printing next one
 
@@ -262,9 +262,7 @@ class Program
 
                 if (winCount < 1) //no winning combinations in this try
                 {
-                    Console.WriteLine("no winning combinations, press any key to continue");
-                    Console.ReadKey();
-                    Console.Clear();
+                    Console.WriteLine("no winning combinations");
                 }
 
                 Console.WriteLine($"New balance {balance.ToString("C")}");
