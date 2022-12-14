@@ -38,7 +38,7 @@ class Program
         Random randomNum = new Random();  //random 
         int[,] slotMachine = new int[3, 3]; //creating empty 2D array with 3 rows and 3 columns
         char[] playChoices = new char[4] { 'V', 'H', 'D', 'M' }; // creating betting choices for player to bet on; having "const" in front of the above line is thrwing error, moved to the bottom to have it accesible by the next loop
-        char line_choise; //line choice have no value, expected to have input
+        char lineChoise; //line choice have no value, expected to have input
         List<string> compliment = new List<string> { "Great choise!", "Awesome selection!", "Let's get to it!", "GOOD choise!", "You are a player!" }; //list of encouragements added 
         double balance = 20.0; //initial ballance of the player
         char playAgain; //restart option
@@ -48,34 +48,29 @@ class Program
         while (true) //start of the game
         {
             Console.WriteLine($"Slot machine has infinite ways for you to win ;)\nWINNING gets you a DOUBLE of the bet!\n" +
-            $"EACH winning line is geting you even MORE!\n");
+            $"EACH additional winning line is geting you even MORE! (min2-max3 lines per 1 bet)\n");
 
             while (true) //inside of the game after each bet
             {
                 string complimentAtTime = compliment[randomNum.Next(compliment.Count)];
                 int winCount = 0;
                 Console.WriteLine($"Current balance {balance.ToString("C")}\n");
-                Console.WriteLine($"Make a bet:\n" +
-                $"V - 3 VERTICAL lines for {BET_MAX.ToString("C")}\n" +      //bet min
-                $"H - 3 HORIZONTALlines for {BET_MAX.ToString("C")}\n" +    //bet min
-                $"D - 2 DIAGONAL lines for {BET_MIN.ToString("C")}\n" +    //bet max
-                $"M - 2 MIDDLE lines for {BET_MIN.ToString("C")}\n" +     //bet max
-                $"\nenter your betting choice V, H, D or M\n");
+                Console.WriteLine($"Betting categories:\n" +
+                    $"{playChoices[0]} - 3 VERTICAL lines for {BET_MAX.ToString("C")}\n" +      //bet min
+                    $"{playChoices[1]} - 3 HORIZONTALlines for {BET_MAX.ToString("C")}\n" +    //bet min
+                    $"{playChoices[2]} - 2 DIAGONAL lines for {BET_MIN.ToString("C")}\n" +    //bet max
+                    $"{playChoices[3]} - 2 MIDDLE lines for {BET_MIN.ToString("C")}\n" +     //bet max
+                    $"\nenter your betting choice V, H, D or M\n");
 
 
-                while (true)
+                lineChoise = Char.ToUpper(Console.ReadKey().KeyChar);
+
+                while (!playChoices.Contains(lineChoise)) //checks if input is anything but a letter, if not, repeats
                 {
-                    line_choise = Char.ToUpper(Console.ReadKey().KeyChar);
-
-                    if (!playChoices.Contains(line_choise)) //checks if input is anything but a letter, if not, repeats
-                    {
-                        Console.WriteLine("\nChoose one of the letters above.\n");
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    Console.WriteLine("\nChoose one of the letters above.\n");
+                    lineChoise = Char.ToUpper(Console.ReadKey().KeyChar);
                 }
+
                 Console.Clear();
                 Console.WriteLine(complimentAtTime + "\n"); //random encouragement for the user
                 Console.WriteLine("Fetching the numbers"); //hint to wait
@@ -96,7 +91,7 @@ class Program
                     }
                 }
 
-                if (line_choise == 'D') //checking input to determine what lines to check 
+                if (lineChoise == 'D') //checking input to determine what lines to check 
                 {
 
                     balance -= BET_MIN; //removing betting cost
@@ -129,7 +124,7 @@ class Program
                     }
                 }
 
-                if (line_choise == 'M')
+                if (lineChoise == 'M')
                 {
                     balance -= BET_MIN;
                     Console.WriteLine($"\nBalance {balance.ToString("C")}\n");
@@ -161,7 +156,7 @@ class Program
                     }
                 }
 
-                if (line_choise == 'V')
+                if (lineChoise == 'V')
                 {
                     balance -= BET_MAX;
                     Console.WriteLine($"Balance {balance.ToString("C")}\n");
@@ -206,7 +201,7 @@ class Program
                     }
                 }
 
-                if (line_choise == 'H')
+                if (lineChoise == 'H')
                 {
                     balance -= BET_MAX;
                     Console.WriteLine($"Balance {balance.ToString("C")}\n");
