@@ -27,7 +27,7 @@ namespace slot_machine
         }
 
         /// <summary>
-        /// 
+        /// is displaying the choices 
         /// </summary>
         /// <param name="option1"></param>first
         /// <param name="option2"></param>second
@@ -41,22 +41,54 @@ namespace slot_machine
                     $"{option1} - 3 VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
                     $"{option2} - 3 HORIZONTALlines for {moneyMax.ToString("C")}\n" +    //bet max
                     $"{option3} - 2 DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
-                    $"{option4} - 2 MIDDLE lines for {moneyMin.ToString("C")}\n" +     //bet min
-                    $"\nenter your betting choice V, H, D or M\n");
+                    $"{option4} - 2 MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
+                    );
         }
 
 
 
 
-        //public static char getValueUntilIsCorrect(char input, List<char> choices, out char output)
-        //{
-        //    while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
-        //    {
-        //        Console.WriteLine("\nChoose one of the letters above.\n");
-        //        input = Char.ToUpper(Console.ReadKey().KeyChar);
-        //        return output = input;
-        //    }
-        //}
+
+
+        /// <summary>
+        /// lists accepted entries to user 
+        /// </summary>
+        public static void promptToMakeChoice(List<char> choices)
+        {
+            Console.WriteLine($"\nenter your betting choice");
+
+            foreach (char item in choices)
+                {
+                Console.Write(" "+ item);
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// is checking users input and returns only correct one
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="choices"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
+        public static char getValueUntilIsCorrect(char input, List<char> choices, out char output)
+        {
+            
+
+            while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
+            {
+                Console.WriteLine("\nChoose one of the letters above.\n");
+                input = Char.ToUpper(Console.ReadKey().KeyChar);
+                      
+            }
+            return output = input;
+        }
+
+
+
+
 
         /// <summary>
         /// taking in random compliment, prints it and additional text
@@ -71,10 +103,6 @@ namespace slot_machine
 
         }
 
-        public static void printMatrix(int slotMachine[row, column])
-        {
-            Console.Write(slotMachine[row, column] + " ");
-        }
 
 
 
