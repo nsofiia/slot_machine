@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace slot_machine
 {
@@ -11,8 +9,8 @@ namespace slot_machine
         /// </summary>
         public static void printGreetingAndRules()
         {
-            Console.WriteLine($"Slot machine has infinite ways for you to win ;)\nWINNING gets you a DOUBLE of the bet!\n" +
-            $"EACH additional winning line is geting you even MORE! (min2-max3 lines per 1 bet)\n");
+            Console.WriteLine($"Slot machine has infinite ways for you to win ;)\nWinning will DOUBLE the bet!\n" +
+            $"EACH additional winning line will bring even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n");
         }
 
 
@@ -38,15 +36,12 @@ namespace slot_machine
         public static void bettingChoicesDisplay(char option1, char option2, char option3, char option4, double moneyMin, double moneyMax)
         {
             Console.WriteLine($"Betting categories:\n" +
-                    $"{option1} - 3 VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
-                    $"{option2} - 3 HORIZONTALlines for {moneyMax.ToString("C")}\n" +    //bet max
-                    $"{option3} - 2 DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
-                    $"{option4} - 2 MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
+                    $"{option1} - all VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
+                    $"{option2} - all HORIZONTAL lines for {moneyMax.ToString("C")}\n" +    //bet max
+                    $"{option3} - all DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
+                    $"{option4} - all MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
                     );
         }
-
-
-
 
 
 
@@ -55,12 +50,13 @@ namespace slot_machine
         /// </summary>
         public static void promptToMakeChoice(List<char> choices)
         {
-            Console.WriteLine($"\nenter your betting choice");
+            Console.Write($"Choose:");
 
             foreach (char item in choices)
-                {
-                Console.Write(" "+ item);
+            {
+                Console.Write(" " + item);
             }
+            Console.WriteLine();
         }
 
 
@@ -73,70 +69,176 @@ namespace slot_machine
         /// <param name="choices"></param>
         /// <param name="output"></param>
         /// <returns></returns>
-        public static char getValueUntilIsCorrect(char input, List<char> choices, out char output)
+        public static char getCorrectValue(char input, List<char> choices, out char output)
         {
-            
-
             while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
             {
-                Console.WriteLine("\nChoose one of the letters above.\n");
                 input = Char.ToUpper(Console.ReadKey().KeyChar);
-                      
+                Console.WriteLine("\nAccepting only options above!\n");
             }
             return output = input;
         }
 
+        /// <summary>
+        /// clears the screen
+        /// </summary>
+        public static void newScreen()
+        {
+            Console.Clear();
+        }
 
+
+        /// <summary>
+        /// exolaining the choice
+        /// </summary>
+        /// <param name="randomCompliment"></param>
+
+        public static void explainingTheChoise(char choise)
+        {
+            Console.WriteLine($"Playing {choise}!\n");
+
+            if (choise == 'M')
+            {
+                Console.WriteLine($"{choise} stands for \"Middle\" lines");
+            }
+            if (choise == 'D')
+            {
+                Console.WriteLine($"{choise} stands for \"Diagonal\" lines");
+            }
+            if (choise == 'H')
+            {
+                Console.WriteLine($"{choise} stands for all \"Horizontal\" lines");
+            }
+            if (choise == 'V')
+            {
+                Console.WriteLine($"{choise} stands for all \"Vertical\" lines");
+            }
+        }
 
 
 
         /// <summary>
-        /// taking in random compliment, prints it and additional text
+        /// prints random compliment6 from provided list 
         /// </summary>
         /// <param name="randomCompliment"></param>
-        public static void complimentPlusWaitPrompt(string randomCompliment)
+        public static void printRandomCompliment(string randomCompliment)
         {
             Console.WriteLine(randomCompliment + "\n"); //random encouragement for the user
+        }
+
+        public static void waitPrompt()
+        {
             Console.WriteLine("Fetching the numbers"); //hint to wait
+        }
 
 
-
+        /// <summary>
+        /// ptint 2D array, each sell with slight delay 
+        /// </summary>
+        /// <param name="machine"></param>
+        public static void printArray(int[,] machine)
+        {
+            for (int row = 0; row < machine.GetLength(0); row++) //filling out 3x3 matrix with random number in each cell
+            {
+                for (int column = 0; column < machine.GetLength(1); column++)
+                {
+                    Console.Write(machine[row, column] + " ");
+                    //print each cell
+                    System.Threading.Thread.Sleep(500);
+                    //wait before printing next one
+                    if (column == machine.GetUpperBound(0))
+                    //add new line when finished with a row -- when last column index == to last index in the first dimension add new line
+                    {
+                        Console.WriteLine();
+                    }
+                }
+            }
         }
 
 
 
-
-
-
-
-
-        public static void firstCheck()
+        /// <summary>
+        /// displaying which line is under check
+        /// </summary>
+        /// <param name="line"></param>
+        public static void printCheck(int line)
         {
-            Console.WriteLine("First combination");
+            switch (line)
+            {
+                case 1: Console.WriteLine("First combination");
+                    break;
+                case 2:
+                    Console.WriteLine("Second combination");
+                    break;
+                case 3:
+                    Console.WriteLine("Third combination");
+                    break;
+            }
+
         }
 
-        public static void secondCheck()
-        {
-            Console.WriteLine("Second combination");
-        }
 
-        public static void thirdCheck()
-        {
-            Console.WriteLine("Third combination");
-        }
-
-        public static void win()
-        {
-            System.Threading.Thread.Sleep(500); //all match in 1 combination
+        /// <summary>
+        /// prints win message and ammount
+        /// </summary>
+        /// <param name="winningAmmount"></param>
+        public static void winDisplay(double winningAmmount)
+        { 
             Console.WriteLine("WIN");
+            Console.Write($"+ {winningAmmount.ToString("C")}\n\n"); 
         }
 
-        public static void notWin()  //combination has no match
+
+
+        /// <summary>
+        /// prints message that combination has no match
+        /// </summary>
+        public static void notWinText()
         {
-            System.Threading.Thread.Sleep(500);
             Console.WriteLine("nope\n");
         }
 
+
+        /// <summary>
+        /// prints message that all combinations has no match
+        /// </summary>
+        public static void lossDisplay()
+        {
+            Console.WriteLine("no winning combinations");
+        }
+
+
+        /// <summary>
+        /// message for user who can not continue playing loss
+        /// </summary>
+        public static void endGameNoMoreCreditMessage()  
+        {
+            Console.WriteLine("All credit is used, press any key to exit");
+            Console.ReadKey();
+        }
+
+
+        /// <summary>
+        /// message for user who can not continue playing win
+        /// </summary>
+        public static void endGameTotalWinMessage()  
+        {
+            Console.WriteLine("You won, press any key to exit");
+            Console.ReadKey();
+        }
+
+
+        /// <summary>
+        /// get input 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static char tryAgainGetValue(char input)  
+        {
+            Console.WriteLine("Would you like to try again? press y to continue, any other key to exit");
+            input = Char.ToUpper(Console.ReadKey().KeyChar);
+            return input;
+        }
     }
 }
 
