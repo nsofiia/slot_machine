@@ -33,20 +33,20 @@ namespace slot_machine
         /// <param name="option4"></param>forth
         /// <param name="moneyMin"></param>small bet
         /// <param name="moneyMax"></param>biger bet
-        public static void bettingChoicesDisplay(char option1, char option2, char option3, char option4, double moneyMin, double moneyMax)
+        public static void bettingChoicesDisplay(List<char> choices, double moneyMin, double moneyMax)
         {
             Console.WriteLine($"Betting categories:\n" +
-                    $"{option1} - all VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
-                    $"{option2} - all HORIZONTAL lines for {moneyMax.ToString("C")}\n" +    //bet max
-                    $"{option3} - all DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
-                    $"{option4} - all MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
+                $"{choices[0]} - all VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
+                $"{choices[1]} - all HORIZONTAL lines for {moneyMax.ToString("C")}\n" +    //bet max
+                $"{choices[0]} - all DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
+                $"{choices[1]} - all MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
                     );
         }
 
 
 
         /// <summary>
-        /// lists accepted entries to user 
+        /// lists expected choise entries
         /// </summary>
         public static void promptToMakeChoice(List<char> choices)
         {
@@ -63,7 +63,7 @@ namespace slot_machine
 
 
         /// <summary>
-        /// is checking users input and returns only correct one
+        /// checks each entry choice untill correct one; return correct one
         /// </summary>
         /// <param name="input"></param>
         /// <param name="choices"></param>
