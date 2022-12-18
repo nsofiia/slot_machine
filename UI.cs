@@ -224,7 +224,7 @@ namespace slot_machine
         /// </summary>
         public static void displayGameOverWinCase()  
         {
-            Console.WriteLine("You won, press any key to exit");
+            Console.WriteLine("You WON all the money! no more bets is accepted. Press any key to exit");
             Console.ReadKey();
         }
 

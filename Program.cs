@@ -3,7 +3,9 @@
 namespace slot_machine;
 class Program
 {
-    const double BET_MIN = 2.0;    //bets and wins initialized as constants
+    const double MIN_BALANCE = 0.0; //constants
+    const double MAX_BALANCE = 100.0;
+    const double BET_MIN = 2.0;    
     const double BET_MAX = 3.0;
     const double WIN_MIN = 4.0;
     const double WIN_MAX = 6.0;
@@ -196,13 +198,13 @@ class Program
                 displayAllLoss();
             }
 
-            if (balance <= 0) //exit - total loss
+            if (balance <= MIN_BALANCE) //exit - total loss
             {
                 displayGameOverFailCase();
                 return;
             }
 
-            if (balance > 100) //exit - total win
+            if (balance > MAX_BALANCE) //exit - total win
             {
                 displayGameOverWinCase();
                 return;
