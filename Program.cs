@@ -58,24 +58,24 @@ class Program
                 if (matrix[0, 0] == matrix[1, 1] && matrix[1, 1] == matrix[2, 2]) //are 3 diagonal cells equal
                 {
                     balance += WIN_MIN;
-                    displayWinCase(WIN_MIN);
+                    displayWinAmmount(WIN_MIN);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(2);
                 if (matrix[0, 2] == matrix[1, 1] && matrix[1, 1] == matrix[2, 0]) //are another 3 diagonal cells equal
                 {
                     balance += WIN_MIN;
-                    displayWinCase(WIN_MIN);
+                    displayWinAmmount(WIN_MIN);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
             }
 
@@ -88,24 +88,24 @@ class Program
                 if (matrix[0, 1] == matrix[1, 1] && matrix[1, 1] == matrix[2, 1]) //are 3 middle cells equal
                 {
                     balance += WIN_MIN;
-                    displayWinCase(WIN_MIN);
+                    displayWinAmmount(WIN_MIN);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(2);
                 if (matrix[1, 0] == matrix[1, 1] && matrix[1, 0] == matrix[1, 2]) //are 3 middle cells equal
                 {
                     balance += WIN_MIN;
-                    displayWinCase(WIN_MIN);
+                    displayWinAmmount(WIN_MIN);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
             }
 
@@ -118,36 +118,36 @@ class Program
                 if (matrix[0, 0] == matrix[1, 0] && matrix[1, 0] == matrix[2, 0]) //are 3 middle cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(2);
                 if (matrix[0, 1] == matrix[1, 1] && matrix[1, 1] == matrix[2, 1]) //are 3 middle cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(3);
                 if (matrix[0, 2] == matrix[1, 2] && matrix[1, 2] == matrix[2, 2]) //are 3 middle cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
             }
 
@@ -160,36 +160,36 @@ class Program
                 if (matrix[0, 0] == matrix[0, 1] && matrix[0, 1] == matrix[0, 2]) //are 3 horizontal cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(2);
                 if (matrix[1, 0] == matrix[1, 1] && matrix[1, 1] == matrix[1, 2]) //are 3 horizontal cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
 
                 displaySystemChecks(3);
                 if (matrix[2, 0] == matrix[2, 1] && matrix[2, 1] == matrix[2, 2]) //are 3 horizontal cells equal
                 {
                     balance += WIN_MAX;
-                    displayWinCase(WIN_MAX);
+                    displayWinAmmount(WIN_MAX);
                     win = true;
                 }
                 else
                 {
-                    displayNotWinCase();
+                    displayWinAmmount(MIN_BALANCE);
                 }
             }
 

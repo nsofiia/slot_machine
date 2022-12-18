@@ -93,7 +93,6 @@ namespace slot_machine
         public static void displayChoiseDetail(char choise)
         {
             Console.Clear();
-            Console.WriteLine($"Playing {choise}!\n");
 
             if (choise == 'M')
             {
@@ -121,7 +120,7 @@ namespace slot_machine
         /// <param name="randomCompliment"></param>
         public static void displayRandomCompliment(string randomCompliment)
         {
-            Console.WriteLine(randomCompliment + "\n"); //random encouragement for the user
+            Console.WriteLine("\n" + randomCompliment + "\n"); //random encouragement for the user
         }
 
         public static void displayWaitPrompt()
@@ -161,43 +160,42 @@ namespace slot_machine
         /// <param name="line"></param>
         public static void displaySystemChecks(int line)
         {
+            Console.Write("Checking ");
             switch (line)
             {
-                case 1: Console.WriteLine("First combination");
+                case 1: Console.Write("first combination");
                     break;
                 case 2:
-                    Console.WriteLine("Second combination");
+                    Console.Write("second combination");
                     break;
                 case 3:
-                    Console.WriteLine("Third combination");
+                    Console.Write("third combination");
                     break;
                 default:
-                    Console.WriteLine("Combination");
+                    Console.Write("combination");
                     break;
             }
-
         }
 
 
         /// <summary>
-        /// prints win message and ammount
+        /// prints win/loss message and ammount
         /// </summary>
         /// <param name="winningAmmount"></param>
-        public static void displayWinCase(double winningAmmount)
-        { 
-            Console.WriteLine("WIN");
-            Console.Write($"+ {winningAmmount.ToString("C")}\n\n"); 
-        }
-
-
-
-        /// <summary>
-        /// prints message that combination has no match
-        /// </summary>
-        public static void displayNotWinCase()
+        public static void displayWinAmmount(double ammount)
         {
-            Console.WriteLine("nope\n");
+            if (ammount > 0)
+            {
+                Console.Write(" *WIN*");
+            }
+            else
+            {
+                Console.Write(" -nope-");
+            }
+
+            Console.Write($"\n+{ammount.ToString("C")}\n-------\n\n");
         }
+
 
 
         /// <summary>
