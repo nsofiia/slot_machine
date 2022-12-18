@@ -171,6 +171,9 @@ namespace slot_machine
                 case 3:
                     Console.WriteLine("Third combination");
                     break;
+                default:
+                    Console.WriteLine("Combination");
+                    break;
             }
 
         }
