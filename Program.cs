@@ -13,14 +13,15 @@ class Program
         Random randomNum = new Random(); //random
         int[,] matrix = new int[3, 3]; //empty 2D array (3 rows,3 columns)
         double balance = 20.0; //initial ballance
-        char playAgain = ' '; //restart option
+        char play = 'Y'; //restart option
         List<char> choices = new List<char> { 'V', 'H', 'D', 'M' };//betting choices; having "const" is thrwing error - moved to the bottom
         List<string> compliment = new List<string> { "Great choise!", "Awesome selection!",
             "Let's get to it!", "GOOD choise!", "You are a player!" };//list of encouragements
 
         displayGreetingAndRules();
+        play = displayTryAgain(play); //continue?
 
-        while (true)
+        while (play == 'Y')
         //inside of the game after each bet
         {
             char lineChoise = ' '; //!letter - resets previous choice  
@@ -31,7 +32,7 @@ class Program
             displayChoicesPrices(choices, BET_MIN.ToString("C"), BET_MAX.ToString("C"));
             displayAcceptedInputs(choices);
             lineChoise = getCorrectValue(lineChoise, choices, out lineChoise);
-            displayNewScreen();
+            //displayNewScreen();
             displayChoiseDetail(lineChoise);
             displayRandomCompliment(selectCompliment);
             displayWaitPrompt();
@@ -209,16 +210,11 @@ class Program
 
             displayBalance(balance);
 
-            playAgain = displayTryAgain(playAgain);
+            play = displayTryAgain(play); //restart?
 
-            if (playAgain == 'Y') // restart
+            if (play != 'Y') //app close
             {
-                displayNewScreen();
-                continue;
-            }
-            else
-            {
-                return; // exit
+                return;
             }
         }
     }

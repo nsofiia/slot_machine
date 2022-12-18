@@ -16,16 +16,6 @@ namespace slot_machine
 
 
         /// <summary>
-        /// is displaying current balance
-        /// </summary>
-        /// <param name="balance"></param>
-        public static void displayBalance(double balance)
-        {
-            Console.WriteLine($"\nBalance {balance.ToString("C")}\n");
-
-        }
-
-        /// <summary>
         /// is displaying the choices 
         /// </summary>
         /// <param name="option1"></param>first
@@ -36,6 +26,7 @@ namespace slot_machine
         /// <param name="moneyMax"></param>biger bet
         public static void displayChoicesPrices(List<char> choices, string moneyMin, string moneyMax)
         {
+            Console.Clear();
             Console.WriteLine(
                 $"Betting categories:\n" +
                 $"{choices[0]} - all VERTICAL lines for {moneyMax}\n" +      //bet max
@@ -43,6 +34,18 @@ namespace slot_machine
                 $"{choices[0]} - all DIAGONAL lines for {moneyMin}\n" +    //bet min
                 $"{choices[1]} - all MIDDLE lines for {moneyMin}\n"   //bet min
                 );
+        }
+
+
+
+        /// <summary>
+        /// is displaying current balance
+        /// </summary>
+        /// <param name="balance"></param>
+        public static void displayBalance(double balance)
+        {
+            Console.WriteLine($"\nBalance {balance.ToString("C")}\n");
+
         }
 
 
@@ -81,14 +84,6 @@ namespace slot_machine
             return output = input;
         }
 
-        /// <summary>
-        /// clears the screen
-        /// </summary>
-        public static void displayNewScreen()
-        {
-            Console.Clear();
-        }
-
 
         /// <summary>
         /// exolaining the choice
@@ -97,6 +92,7 @@ namespace slot_machine
 
         public static void displayChoiseDetail(char choise)
         {
+            Console.Clear();
             Console.WriteLine($"Playing {choise}!\n");
 
             if (choise == 'M')
@@ -237,7 +233,7 @@ namespace slot_machine
         /// <returns></returns>
         public static char displayTryAgain(char input)  
         {
-            Console.WriteLine("Would you like to try again? press y to continue, any other key to exit");
+            Console.WriteLine("Would you like to continue? press y to continue, any other key to exit");
             input = Char.ToUpper(Console.ReadKey().KeyChar);
             return input;
         }
