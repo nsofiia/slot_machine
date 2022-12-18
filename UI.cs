@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace slot_machine
 {
@@ -33,14 +34,15 @@ namespace slot_machine
         /// <param name="option4"></param>forth
         /// <param name="moneyMin"></param>small bet
         /// <param name="moneyMax"></param>biger bet
-        public static void bettingChoicesDisplay(List<char> choices, double moneyMin, double moneyMax)
+        public static void bettingChoicesDisplay(List<char> choices, string moneyMin, string moneyMax)
         {
-            Console.WriteLine($"Betting categories:\n" +
-                $"{choices[0]} - all VERTICAL lines for {moneyMax.ToString("C")}\n" +      //bet max
-                $"{choices[1]} - all HORIZONTAL lines for {moneyMax.ToString("C")}\n" +    //bet max
-                $"{choices[0]} - all DIAGONAL lines for {moneyMin.ToString("C")}\n" +    //bet min
-                $"{choices[1]} - all MIDDLE lines for {moneyMin.ToString("C")}\n"   //bet min
-                    );
+            Console.WriteLine(
+                $"Betting categories:\n" +
+                $"{choices[0]} - all VERTICAL lines for {moneyMax}\n" +      //bet max
+                $"{choices[1]} - all HORIZONTAL lines for {moneyMax}\n" +    //bet max
+                $"{choices[0]} - all DIAGONAL lines for {moneyMin}\n" +    //bet min
+                $"{choices[1]} - all MIDDLE lines for {moneyMin}\n"   //bet min
+                );
         }
 
 
