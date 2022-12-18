@@ -4,30 +4,30 @@ namespace slot_machine;
 class Program
 {
     const double MIN_BALANCE = 0.0; //constants
-    const double MAX_BALANCE = 100.0;
     const double BET_MIN = 2.0;    
     const double BET_MAX = 3.0;
     const double WIN_MIN = 4.0;
     const double WIN_MAX = 6.0;
+    const double MAX_BALANCE = 100.0;
 
     static void Main(string[] args)
     {
         Random randomNum = new Random(); //random
         int[,] matrix = new int[3, 3]; //empty 2D array (3 rows,3 columns)
         double balance = 20.0; //initial ballance
-        char play = 'Y'; //restart option
-        List<char> choices = new List<char> { 'V', 'H', 'D', 'M' };//betting choices; having "const" is thrwing error - moved to the bottom
-        List<string> compliment = new List<string> { "Great choise!", "Awesome selection!",
+        char play = 'Y'; //game restart option
+        List<char> choices = new List<char> { 'V', 'H', 'D', 'M' };//accepted key choices; having "const" is thrwing error - moved to the bottom
+        List<string> compliments = new List<string> { "Great choise!", "Awesome selection!",
             "Let's get to it!", "GOOD choise!", "You are a player!" };//list of encouragements
 
         displayGreetingAndRules();
-        play = displayTryAgain(play); //continue?
+        play = displayTryAgain(play); //continue playing?
 
         while (play == 'Y')
         //inside of the game after each bet
         {
-            char lineChoise = ' '; //!letter - resets previous choice  
-            string selectCompliment = compliment[randomNum.Next(compliment.Count)];//select random record from list with encouragements
+            char lineChoise = ' '; //!letter - resets choice from previous loop, if user played before
+            string selectCompliment = compliments[randomNum.Next(compliments.Count)];//select random record from list with compliments
             bool win = false; //for gain display
 
             displayBalance(balance);

@@ -88,9 +88,9 @@ namespace slot_machine
 
 
         /// <summary>
-        /// exolaining the choice
+        /// prints more details about the choice
         /// </summary>
-        /// <param name="randomCompliment"></param>
+        /// <param name="choise"></param>
 
         public static void displayChoiseDetail(char choise)
         {
