@@ -25,7 +25,7 @@ class Program
         {
             char lineChoise = ' '; //!letter - resets previous choice  
             string selectCompliment = compliment[randomNum.Next(compliment.Count)];//select random record from list with encouragements
-            int winCount = 0; //for gain display
+            bool win = false; //for gain display
 
             displayBalance(balance);
             displayChoicesPrices(choices, BET_MIN.ToString("C"), BET_MAX.ToString("C"));
@@ -56,7 +56,7 @@ class Program
                 {
                     balance += WIN_MIN;
                     displayWinCase(WIN_MIN);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -68,7 +68,7 @@ class Program
                 {
                     balance += WIN_MIN;
                     displayWinCase(WIN_MIN);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -86,7 +86,7 @@ class Program
                 {
                     balance += WIN_MIN;
                     displayWinCase(WIN_MIN);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -98,7 +98,7 @@ class Program
                 {
                     balance += WIN_MIN;
                     displayWinCase(WIN_MIN);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -116,7 +116,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -128,7 +128,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -140,7 +140,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -158,7 +158,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -170,7 +170,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -182,7 +182,7 @@ class Program
                 {
                     balance += WIN_MAX;
                     displayWinCase(WIN_MAX);
-                    winCount++;
+                    win = true;
                 }
                 else
                 {
@@ -190,9 +190,9 @@ class Program
                 }
             }
 
-            if (winCount < 1) //no winning combinations in this game
+            if (!win) //no winning combinations in this game
             {
-                displayNotWinCase();
+                displayAllLoss();
             }
 
             if (balance <= 0) //exit - total loss
