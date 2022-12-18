@@ -74,14 +74,16 @@ namespace slot_machine
         /// <param name="choices"></param>
         /// <param name="output"></param>
         /// <returns></returns>
-        public static char getCorrectValue(char input, List<char> choices, out char output)
+        public static char getCorrectValue(List<char> choices)
         {
+            char input = Char.ToUpper(Console.ReadKey().KeyChar);
+
             while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
-            {
-                input = Char.ToUpper(Console.ReadKey().KeyChar);
+            {            
                 Console.WriteLine("\nselect option\n");
+                input = Char.ToUpper(Console.ReadKey().KeyChar);
             }
-            return output = input;
+            return input;
         }
 
 

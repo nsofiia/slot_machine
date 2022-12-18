@@ -33,8 +33,9 @@ class Program
             displayBalance(balance);
             displayChoicesPrices(choices, BET_MIN.ToString("C"), BET_MAX.ToString("C"));
             displayAcceptedInputs(choices);
-            lineChoise = getCorrectValue(lineChoise, choices, out lineChoise);
-            //displayNewScreen();
+
+            lineChoise = getCorrectValue(choices);
+
             displayChoiseDetail(lineChoise);
             displayRandomCompliment(selectCompliment);
             displayWaitPrompt();
