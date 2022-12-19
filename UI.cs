@@ -96,21 +96,23 @@ namespace slot_machine
         {
             Console.Clear();
 
-            if (choise == 'M')
+            switch (choise)
             {
-                Console.WriteLine($"{choise} stands for \"Middle\" lines");
-            }
-            if (choise == 'D')
-            {
-                Console.WriteLine($"{choise} stands for \"Diagonal\" lines");
-            }
-            if (choise == 'H')
-            {
-                Console.WriteLine($"{choise} stands for all \"Horizontal\" lines");
-            }
-            if (choise == 'V')
-            {
-                Console.WriteLine($"{choise} stands for all \"Vertical\" lines");
+                case 'M':
+                    Console.WriteLine($"{choise} stands for \"Middle\" lines");
+                    break;
+                case 'D':
+                    Console.WriteLine($"{choise} stands for \"Diagonal\" lines");
+                    break;
+                case 'H':
+                    Console.WriteLine($"{choise} stands for all \"Horizontal\" lines");
+                    break;
+                case 'V':
+                    Console.WriteLine($"{choise} stands for all \"Vertical\" lines");
+                    break;
+                default:
+                    Console.WriteLine($"not defined choise");
+                    break;
             }
         }
 
