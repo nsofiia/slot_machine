@@ -174,7 +174,7 @@ namespace slot_machine
                     Console.Write("third combination");
                     break;
                 default:
-                    Console.Write("combination");
+                    Console.Write("Exception occured");
                     break;
             }
         }

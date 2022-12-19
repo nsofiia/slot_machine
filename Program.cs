@@ -1,10 +1,11 @@
 ﻿using static slot_machine.UI;
+using static slot_machine.Logic;
 
 namespace slot_machine;
 class Program
 {
     const double MIN_BALANCE = 0.0; //constants
-    const double BET_MIN = 2.0;    
+    const double BET_MIN = 2.0;
     const double BET_MAX = 3.0;
     const double WIN_MIN = 4.0;
     const double WIN_MAX = 6.0;
@@ -12,8 +13,11 @@ class Program
 
     static void Main(string[] args)
     {
-        Random randomNum = new Random(); //random
-        int[,] matrix = new int[3, 3]; //empty 2D array (3 rows,3 columns)
+        initialiseRandom();
+        //Random randomNum = new Random(); //random*
+        // int[,] matrix = new int[3, 3]; //empty 2D array (3 rows,3 columns)
+        createMatrixMemory();
+        //createInitialBalance();
         double balance = 20.0; //initial ballance
         char play = 'Y'; //game restart option
         List<char> choices = new List<char> { 'V', 'H', 'D', 'M' };//accepted key choices; having "const" is thrwing error - moved to the bottom
@@ -27,10 +31,10 @@ class Program
         //inside of the game after each bet
         {
             char lineChoise = ' '; //!letter - resets choice from previous loop, if user played before
-            string selectCompliment = compliments[randomNum.Next(compliments.Count)];//select random record from list with compliments
+            string selectCompliment = compliments[initialiseRandom().Next(compliments.Count)];//select random record from list with compliments
             bool win = false; //for gain display
 
-            displayBalance(balance);
+            displayBalance(createInitialBalance());
             displayChoicesPrices(choices, BET_MIN.ToString("C"), BET_MAX.ToString("C"));
             displayAcceptedInputs(choices);
 
@@ -44,7 +48,7 @@ class Program
             {
                 for (int column = 0; column < matrix.GetLength(1); column++)
                 {
-                    matrix[row, column] = randomNum.Next(3);
+                    matrix[row, column] = initialiseRandom().Next(3);
                 }
             }
 
@@ -55,6 +59,7 @@ class Program
                 balance -= BET_MIN; //removing betting cost
                 displayBalance(balance);
 
+                displaySystemChecks(4);
                 displaySystemChecks(1);
                 if (matrix[0, 0] == matrix[1, 1] && matrix[1, 1] == matrix[2, 2]) //are 3 diagonal cells equal
                 {
