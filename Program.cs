@@ -12,9 +12,11 @@ class Program
     const double WIN_MIN = 4.0;
     const double WIN_MAX = 6.0;
     const double MAX_BALANCE = 100.0;
+    
 
     static void Main(string[] args)
     {
+        List<char> choices = new List<char> { 'V', 'H', 'D', 'M' }; //making it const - creating error
         double balance = 20.0; //initial ballance
         char play = 'Y'; //game restart option
         displayGreetingAndRules();
@@ -26,10 +28,9 @@ class Program
             bool win = false; //for gain display
             char lineChoise = ' '; //!letter - resets choice from previous loop, if user played before            
             displayBalance(balance);
-            acceptedChoicesList();
-            displayChoicesPrices(acceptedChoicesList(), BET_MIN.ToString("C"), BET_MAX.ToString("C"));
-            displayAcceptedInputs(acceptedChoicesList());
-            lineChoise = getCorrectValue(acceptedChoicesList());
+            displayChoicesPrices(choices, BET_MIN.ToString("C"), BET_MAX.ToString("C"));
+            displayAcceptedInputs(choices);
+            lineChoise = getCorrectValue(choices);
             displayChoiseDetail(lineChoise);
             displayRandomCompliment(selectRandomCompliment());
             displayWaitPrompt();
