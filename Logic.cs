@@ -29,19 +29,6 @@ namespace slot_machine
             return matrix;
         }
 
-
-        /// <summary>
-        /// list of existing choices for user to input
-        /// </summary>
-        /// <returns></returns>
-        public static List<char> acceptedChoicesList()
-        {
-            List<char> choices = new List<char> { 'V', 'H', 'D', 'M' };//accepted key choices; having "const" is thrwing error - moved to the bottom
-            return choices;
-        }
-
-
-
         /// <summary>
         /// adds 2 ammounts
         /// </summary>
@@ -50,8 +37,8 @@ namespace slot_machine
         /// <returns></returns>
         public static double removeMoney(double money, double removeAmmount)
         {
-            money -= removeAmmount;
-            return money;
+            double newBalance = money - removeAmmount;
+            return newBalance;
         }
 
 
@@ -63,8 +50,8 @@ namespace slot_machine
         /// <returns></returns>
         public static double addMoney(double money, double addAmmount)
         {
-            money += addAmmount;
-            return money;
+            double newBalance = money + addAmmount;
+            return newBalance;
         }
 
 
@@ -72,13 +59,9 @@ namespace slot_machine
         /// 
         /// </summary>
         /// <returns></returns>
-        public static string selectRandomCompliment()
+        public static string selectRandomFromList(List<string> list)
         {
-            //list of encouragements
-            List<string> compliments = new List<string> { "Great choise!", "Awesome selection!",
-            "Let's get to it!", "GOOD choise!", "You are a player!" };
-
-            string compliment = compliments[randomNum.Next(compliments.Count)];//select random record from list with compliments
+            string compliment = list[randomNum.Next(list.Count)];//select random record from list with compliments
             return compliment;
         }
 

@@ -3,8 +3,7 @@ using static slot_machine.Logic;
 
 namespace slot_machine;
 class Program
-{
-    
+{    
     const int FILL_MATRIX_MAX_INT = 3; //number used as cap value to fill matrix with random numbers 
     const double MIN_BALANCE = 0.0; //constants
     const double BET_MIN = 2.0;
@@ -13,10 +12,10 @@ class Program
     const double WIN_MAX = 6.0;
     const double MAX_BALANCE = 100.0;
     
-
     static void Main(string[] args)
     {
-        List<char> choices = new List<char> { 'V', 'H', 'D', 'M' }; //making it const - creating error
+        List<char> choices = new List<char> { 'V', 'H', 'D', 'M' }; //making it const - creating error                                                              
+        List<string> compliments = new List<string> { "Great choise!", "Awesome selection!", "Let's get to it!", "GOOD choise!", "You are a player!" };
         double balance = 20.0; //initial ballance
         char play = 'Y'; //game restart option
         displayGreetingAndRules();
@@ -32,7 +31,7 @@ class Program
             displayAcceptedInputs(choices);
             lineChoise = getCorrectValue(choices);
             displayChoiseDetail(lineChoise);
-            displayRandomCompliment(selectRandomCompliment());
+            displayRandomCompliment(selectRandomFromList(compliments));
             displayWaitPrompt();
             int[,] matrix = createMatrixOfRandomInts(3,3,FILL_MATRIX_MAX_INT);
             displayMatrix(matrix);
@@ -41,6 +40,7 @@ class Program
             {
                 removeMoney(balance, BET_MIN);
                 displayBalance(balance);
+
                 displaySystemChecks(1);
                 if (matrix[0, 0] == matrix[1, 1] && matrix[1, 1] == matrix[2, 2]) //are 3 diagonal cells equal
                 {
@@ -207,5 +207,4 @@ class Program
             }
         }
     }
-
 }
