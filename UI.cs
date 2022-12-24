@@ -7,7 +7,7 @@ namespace slot_machine
         /// <summary>
         /// is listing greeting and rules
         /// </summary>
-        public static void displayGreetingAndRules()
+        public static void ShowGreetingAndRules()
         {
             Console.WriteLine($"Slot machine has infinite ways for you to win ;)\n\nWinning will DOUBLE the bet!\n" +
             $"EACH additional winning line is bringing even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n");
@@ -23,11 +23,11 @@ namespace slot_machine
         /// <param name="option4"></param>forth
         /// <param name="moneyMin"></param>small bet
         /// <param name="moneyMax"></param>biger bet
-        public static void displayChoicesPrices(List<char> choices, List<double> prices)
+        public static void ShowBettingChoices(List<char> choices, List<double> prices)
         {
             string moneyMax = prices[1].ToString("C");
             string moneyMin = prices[0].ToString("C");
-
+            Console.Clear();
             Console.WriteLine(
                 $"Betting categories:\n" +
                 $"{choices[0]} - all VERTICAL lines for {moneyMax}\n" +      //bet max
@@ -43,7 +43,7 @@ namespace slot_machine
         /// is displaying current balance
         /// </summary>
         /// <param name="balance"></param>
-        public static void displayBalance(double money)
+        public static void ShowPresentBalance(double money)
         {
             Console.WriteLine($"Balance {money.ToString("C")}");
 
@@ -53,7 +53,7 @@ namespace slot_machine
         /// <summary>
         /// lists expected choise entries
         /// </summary>
-        public static void displayAcceptedInputs(List<char> choices)
+        public static void ShowAcceptedInputList(List<char> choices)
         {
             Console.Write($"Choose:");
 
@@ -74,7 +74,7 @@ namespace slot_machine
         /// <param name="choices"></param>
         /// <param name="output"></param>
         /// <returns></returns>
-        public static char getCorrectValue(List<char> choices)
+        public static char AskToChooseUntillCorrect(List<char> choices)
         {
             char input = Char.ToUpper(Console.ReadKey().KeyChar);
 
@@ -92,7 +92,7 @@ namespace slot_machine
         /// </summary>
         /// <param name="choise"></param>
 
-        public static void displayChoiseDetail(char choise)
+        public static void ShowChoiseDetails(char choise)
         {
             switch (choise)
             {
@@ -120,26 +120,19 @@ namespace slot_machine
         /// prints string 
         /// </summary>
         /// <param name="randomCompliment"></param>
-        public static void displayRandomCompliment(string randomCompliment)
+        public static void ShowString(string randomCompliment)
         {
             Console.WriteLine("\n" + randomCompliment + "\n"); //random encouragement for the user
         }
 
         /// <summary>
-        /// ux for user to wait
-        /// </summary>
-        public static void displayWaitPrompt()
-        {
-            Console.WriteLine("Fetching:"); //hint to wait
-        }
-
-
-        /// <summary>
         /// ptint 2D array, each sell with slight delay to build anticipation
         /// </summary>
         /// <param name="machine"></param>
-        public static void displayMatrix(int[,] machine)
+        public static void ShowMatrixOfInts(int[,] machine)
         {
+            Console.WriteLine("Fetching:"); //hint to wait
+
             for (int row = 0; row < machine.GetLength(0); row++) //filling out 3x3 matrix with random number in each cell
             {
                 for (int column = 0; column < machine.GetLength(1); column++)
@@ -159,22 +152,22 @@ namespace slot_machine
 
 
         /// <summary>
-        /// prints win/loss message and ammount
+        /// ptakes double, prints currency 
         /// </summary>
         /// <param name="winningAmmount"></param>
-        public static void displayWinAmmount(double ammount)
+        public static void ShowAmmount(double ammount)
         {
             Console.Write($"+{ammount.ToString("C")}\n-------\n");
         }
 
 
         /// <summary>
-        /// is showing int (ammount of winning lines)
+        /// is showing int (ammount of winning lines) + "wins"
         /// </summary>
         /// <param name="winCount"></param>
-        public static void displayHowManyWins(int winCount)
+        public static void ShowHowManyWins(int winCount)
         {
-            Console.WriteLine($"\n{winCount} wins");
+            Console.WriteLine($"\n{winCount} win(s)");
         }
 
 
@@ -183,7 +176,7 @@ namespace slot_machine
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static char displayTryAgain(char input)
+        public static char ShowContinueExitPrompt(char input)
         {
             Console.WriteLine("\nWould you like to continue?\npress y to continue, any other key to exit");
             input = Char.ToUpper(Console.ReadKey().KeyChar);

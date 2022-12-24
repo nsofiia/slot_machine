@@ -12,7 +12,7 @@ namespace slot_machine
         /// <param name="dimension2"> how many rows in matrix </param>
         /// <param name="topInt">randon numbers from 0 to topInt will fill out the matrix</param>
         /// <returns></returns>
-        public static int[,] createMatrixOfRandomInts(int dimension1, int dimension2, int topInt)//takes in 2 
+        public static int[,] CreateMatrixOfRandomInts(int dimension1, int dimension2, int topInt)//takes in 2 
         {
             int[,] matrix = new int[dimension1, dimension2];
 
@@ -31,7 +31,7 @@ namespace slot_machine
         /// takes string list, selects a random member from it and returns it
         /// </summary>
         /// <returns></returns>
-        public static string selectRandomFromList(List<string> list)
+        public static string SelectRandomFromList(List<string> list)
         {
             string compliment = list[randomNum.Next(list.Count)];//select random record from list with compliments
             return compliment;
@@ -44,7 +44,7 @@ namespace slot_machine
         /// <param name="choise"></param> // choice that user selected
         /// <param name="prices"></param> // list of prices
         /// <returns></returns>
-        public static double choiceCost(char choise, List<double> prices)
+        public static double FindChoiceCost(char choise, List<double> prices)
         {
             double price = 0.0;
 
@@ -75,32 +75,32 @@ namespace slot_machine
         /// <param name="grid"></param>
         /// <param name="choice"></param>
         /// <returns></returns>
-        public static List<int> getCombinations(int[,] grid, char choice)
+        public static List<int> FindAllCombinations(int[,] grid, char choice)
         {
             List<int> listOfLines = new List<int>();
 
             switch (choice)
             {
-                case 'D':
+                case 'D'://the 2 diagonal lines, gathering in 1 ordered list 
 
-                    for (int i = 0; i < grid.GetLength(0); i++)
+                    for (int i = 0; i < grid.GetLength(0); i++) //diagonal from left top to the right bottom
                     {
                         int num = grid[i, i];
                         listOfLines.Add(num);
                     }
 
-                    for (int i = 0; i < grid.GetLength(0); i++)
+                    for (int i = 0; i < grid.GetLength(1); i++) //diagonal from left bottom to the right top
                     {
-                        int num = grid[i, (grid.GetLength(0) - 1) - i];
+                        int num = grid[i, (grid.GetLength(1) - 1) - i];
                         listOfLines.Add(num);
                     }
                     break;
 
-                case 'H':
+                case 'H': // the 3 holizontl lines
 
-                    for (int i = 0; i < grid.GetLength(0); i++)
+                    for (int i = 0; i < grid.GetLength(0); i++) // getting all 3 lines in correct order in 1 list 
                     {
-                        for (int j = 0; j < grid.GetLength(0); j++)
+                        for (int j = 0; j < grid.GetLength(1); j++)
                         {
                             int num = grid[i, j];
                             listOfLines.Add(num);
@@ -108,7 +108,7 @@ namespace slot_machine
                     }
                     break;
 
-                case 'M':
+                case 'M': // 2 middle lines
 
                     for (int i = 0; i < grid.GetLength(0); i++)
                     {
@@ -116,18 +116,18 @@ namespace slot_machine
                         listOfLines.Add(num);
                     }
 
-                    for (int i = 0; i < grid.GetLength(0); i++)
+                    for (int i = 0; i < grid.GetLength(1); i++)
                     {
-                        int num = grid[i, grid.GetLength(0) % 2];
+                        int num = grid[i, grid.GetLength(1) % 2];
                         listOfLines.Add(num);
                     }
                     break;
 
-                case 'V':
+                case 'V':// 3 vertical lines 
 
                     for (int i = 0; i < grid.GetLength(0); i++)
                     {
-                        for (int j = 0; j < grid.GetLength(0); j++)
+                        for (int j = 0; j < grid.GetLength(1); j++)
                         {
                             int num = grid[j, i];
                             listOfLines.Add(num);
@@ -144,6 +144,34 @@ namespace slot_machine
         }
 
 
+        /// <summary>
+        /// selecting correct 1 line win ammount for the choice 
+        /// </summary>
+        /// <param name="winAmountsList"></param>
+        /// <param name="choice"></param>
+        /// <returns></returns>
+        public static double FindWinAmmount(List<double> winAmountsList, char choice)
+        {
+            double winAmount = 0.0;
+            switch (choice)
+            {
+                case 'V':
+                case 'H':
+                    winAmount = winAmountsList[1];
+                    break;
+                case 'D':
+                case 'M':
+                    winAmount = winAmountsList[0];
+                    break;
+                default:
+                    Console.WriteLine("Ammount is not defined for this choice");
+                    break;
+            }
+            return winAmount;
+        }
+
+
+
 
         /// <summary>
         /// checks if each 3 sequences are equal in the list > returns count of equal sequences 
@@ -152,7 +180,7 @@ namespace slot_machine
         /// <param name="combos"></param> list of all combos
         /// <param name="choice"></param> determined weather it is 2 or 3 lines to check
         /// <returns></returns>
-        public static int findWinCount(int matrixLength, List<int> combos, char choice)
+        public static int FindWinCount(int matrixLength, List<int> combos, char choice)
         {
             int count = 0;
 
@@ -160,15 +188,17 @@ namespace slot_machine
             {
                 case 'V': // 3 lines
                 case 'H':
-                    if (combos[0] == combos[1] && combos[1] == combos[2])
+                    if (combos[0] == combos[1] && combos[1] == combos[2]) //checking list with all wins: first 3 items
                     {
                         count++;
                     }
-                    if (combos[matrixLength] == combos[matrixLength + 1] && combos[matrixLength] == combos[matrixLength + 2])
+                    if (combos[matrixLength] == combos[matrixLength + 1] && combos[matrixLength] == combos[matrixLength + 2])// checking second 3 items
                     {
                         count++;
                     }
-                    if (combos[matrixLength * 2] == combos[(matrixLength * 2) + 1] && combos[matrixLength * 2] == combos[(matrixLength * 2) + 2])
+
+
+                    if (combos[matrixLength * 2] == combos[(matrixLength * 2) + 1] && combos[matrixLength * 2] == combos[(matrixLength * 2) + 2]) // checking last 3 items for list.length=9 elements 
                     {
                         count++;
                     }
@@ -176,7 +206,7 @@ namespace slot_machine
 
                 case 'M':    //2 lines
                 case 'D':
-                    if (combos[0] == combos[1] && combos[1] == combos[2])
+                    if (combos[0] == combos[1] && combos[1] == combos[2]) // checking 
                     {
                         count++;
                     }
@@ -184,6 +214,10 @@ namespace slot_machine
                     {
                         count++;
                     }
+                    break;
+
+                default:
+                    Console.WriteLine("Choise is not supported: Logic.FindWinCount");
                     break;
             }
             return count;
