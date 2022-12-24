@@ -28,12 +28,11 @@ class Program
 
         while (play == 'Y')
         //inside of the game after each bet
-        {
-            char lineChoise = ' '; //!letter - resets choice from previous loop, if user played before            
+        {           
             ShowBettingChoices(choices, betPrices);
             ShowPresentBalance(balance);
             ShowAcceptedInputList(choices);//display list of accepted choices
-            lineChoise = AskToChooseUntillCorrect(choices);//asks user to input untill correct value is returned
+            char lineChoise = AskToChooseUntillCorrect(choices);//asks user to input untill correct value is returned
             double price = FindChoiceCost(lineChoise, betPrices);
             balance -= price;
             Console.Clear();

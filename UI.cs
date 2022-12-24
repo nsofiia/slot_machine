@@ -78,7 +78,7 @@ namespace slot_machine
         {
             char input = Char.ToUpper(Console.ReadKey().KeyChar);
 
-            while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
+            while (!choices.Contains(input)) //checks if input is anything but a letter from choises list, if not, repeats
             {
                 Console.WriteLine("\nselect option\n");
                 input = Char.ToUpper(Console.ReadKey().KeyChar);
