@@ -1,5 +1,4 @@
 ﻿using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace slot_machine
 {
@@ -10,8 +9,8 @@ namespace slot_machine
         /// </summary>
         public static void displayGreetingAndRules()
         {
-            Console.WriteLine($"Slot machine has infinite ways for you to win ;)\nWinning will DOUBLE the bet!\n" +
-            $"EACH additional winning line will bring even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n");
+            Console.WriteLine($"Slot machine has infinite ways for you to win ;)\n\nWinning will DOUBLE the bet!\n" +
+            $"EACH additional winning line is bringing even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n");
         }
 
 
@@ -24,15 +23,17 @@ namespace slot_machine
         /// <param name="option4"></param>forth
         /// <param name="moneyMin"></param>small bet
         /// <param name="moneyMax"></param>biger bet
-        public static void displayChoicesPrices(List<char> choices, string moneyMin, string moneyMax)
+        public static void displayChoicesPrices(List<char> choices, List<double> prices)
         {
-            Console.Clear();
+            string moneyMax = prices[1].ToString("C");
+            string moneyMin = prices[0].ToString("C");
+
             Console.WriteLine(
                 $"Betting categories:\n" +
                 $"{choices[0]} - all VERTICAL lines for {moneyMax}\n" +      //bet max
                 $"{choices[1]} - all HORIZONTAL lines for {moneyMax}\n" +    //bet max
-                $"{choices[0]} - all DIAGONAL lines for {moneyMin}\n" +    //bet min
-                $"{choices[1]} - all MIDDLE lines for {moneyMin}\n"   //bet min
+                $"{choices[2]} - all DIAGONAL lines for {moneyMin}\n" +    //bet min
+                $"{choices[3]} - all MIDDLE lines for {moneyMin}\n"   //bet min
                 );
         }
 
@@ -42,12 +43,11 @@ namespace slot_machine
         /// is displaying current balance
         /// </summary>
         /// <param name="balance"></param>
-        public static void displayBalance(double balance)
+        public static void displayBalance(double money)
         {
-            Console.WriteLine($"\nBalance {balance.ToString("C")}\n");
+            Console.WriteLine($"Balance {money.ToString("C")}");
 
         }
-
 
 
         /// <summary>
@@ -61,10 +61,10 @@ namespace slot_machine
             {
                 Console.Write(" " + item);
             }
+            System.Threading.Thread.Sleep(500);
+            Console.Write(" >");
             Console.WriteLine();
         }
-
-
 
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace slot_machine
             char input = Char.ToUpper(Console.ReadKey().KeyChar);
 
             while (!choices.Contains(input)) //checks if input is anything but a letter, if not, repeats
-            {            
+            {
                 Console.WriteLine("\nselect option\n");
                 input = Char.ToUpper(Console.ReadKey().KeyChar);
             }
@@ -94,21 +94,19 @@ namespace slot_machine
 
         public static void displayChoiseDetail(char choise)
         {
-            Console.Clear();
-
             switch (choise)
             {
                 case 'M':
-                    Console.WriteLine($"{choise} stands for \"Middle\" lines");
+                    Console.WriteLine($"{choise} - 2 middle lines are selected as winning combo");
                     break;
                 case 'D':
-                    Console.WriteLine($"{choise} stands for \"Diagonal\" lines");
+                    Console.WriteLine($"{choise} - 2 diagonal lines are selected as winning combo");
                     break;
                 case 'H':
-                    Console.WriteLine($"{choise} stands for all \"Horizontal\" lines");
+                    Console.WriteLine($"{choise} - all 3 horizontal lines are selected as winning combo");
                     break;
                 case 'V':
-                    Console.WriteLine($"{choise} stands for all \"Vertical\" lines");
+                    Console.WriteLine($"{choise} - all 3 vertical lines are selected as winning combo");
                     break;
                 default:
                     Console.WriteLine($"not defined choise");
@@ -119,7 +117,7 @@ namespace slot_machine
 
 
         /// <summary>
-        /// prints random compliment6 from provided list 
+        /// prints string 
         /// </summary>
         /// <param name="randomCompliment"></param>
         public static void displayRandomCompliment(string randomCompliment)
@@ -127,14 +125,17 @@ namespace slot_machine
             Console.WriteLine("\n" + randomCompliment + "\n"); //random encouragement for the user
         }
 
+        /// <summary>
+        /// ux for user to wait
+        /// </summary>
         public static void displayWaitPrompt()
         {
-            Console.WriteLine("Fetching the numbers"); //hint to wait
+            Console.WriteLine("Fetching:"); //hint to wait
         }
 
 
         /// <summary>
-        /// ptint 2D array, each sell with slight delay 
+        /// ptint 2D array, each sell with slight delay to build anticipation
         /// </summary>
         /// <param name="machine"></param>
         public static void displayMatrix(int[,] machine)
@@ -157,77 +158,23 @@ namespace slot_machine
         }
 
 
-
-        /// <summary>
-        /// displaying which line is under check
-        /// </summary>
-        /// <param name="line"></param>
-        public static void displaySystemChecks(int line)
-        {
-            Console.Write("Checking ");
-            switch (line)
-            {
-                case 1: Console.Write("first combination");
-                    break;
-                case 2:
-                    Console.Write("second combination");
-                    break;
-                case 3:
-                    Console.Write("third combination");
-                    break;
-                default:
-                    Console.Write("Exception occured");
-                    break;
-            }
-        }
-
-
         /// <summary>
         /// prints win/loss message and ammount
         /// </summary>
         /// <param name="winningAmmount"></param>
         public static void displayWinAmmount(double ammount)
         {
-            if (ammount > 0)
-            {
-                Console.Write(" *WIN*");
-            }
-            else
-            {
-                Console.Write(" -nope-");
-            }
-
-            Console.Write($"\n+{ammount.ToString("C")}\n-------\n\n");
-        }
-
-
-
-        /// <summary>
-        /// prints message that all combinations has no match
-        /// </summary>
-        public static void displayAllLoss()
-        {
-            Console.WriteLine("no winning combinations");
+            Console.Write($"+{ammount.ToString("C")}\n-------\n");
         }
 
 
         /// <summary>
-        /// message for user who can not continue playing loss
+        /// is showing int (ammount of winning lines)
         /// </summary>
-        public static void displayGameOverFailCase()  
+        /// <param name="winCount"></param>
+        public static void displayHowManyWins(int winCount)
         {
-            Console.WriteLine("All credit is used, press any key to exit");
-            Console.ReadKey();
-        }
-
-
-        /// <summary>
-        /// message for user who can not continue playing win
-        /// </summary>
-        public static void displayGameOverWinCase()  
-        {
-            Console.WriteLine("You WON all the money! no more bets is accepted. Press any key to exit");
-            Console.ReadKey();
+            Console.WriteLine($"\n{winCount} wins");
         }
 
 
@@ -236,9 +183,9 @@ namespace slot_machine
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static char displayTryAgain(char input)  
+        public static char displayTryAgain(char input)
         {
-            Console.WriteLine("Would you like to continue? press y to continue, any other key to exit");
+            Console.WriteLine("\nWould you like to continue?\npress y to continue, any other key to exit");
             input = Char.ToUpper(Console.ReadKey().KeyChar);
             return input;
         }
