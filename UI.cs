@@ -9,8 +9,21 @@ namespace slot_machine
         /// </summary>
         public static void ShowGreetingAndRules()
         {
+            int timeBeforeNext = 500; //milliseconds
+            int countdown = 10; //used to display to the user how much time left to read
             Console.WriteLine($"Slot machine has infinite ways for you to win ;)\n\nWinning will DOUBLE the bet!\n" +
-            $"EACH additional winning line is bringing even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n");
+            $"EACH additional winning line is bringing even MORE!\n(minimum 2, maximum 3 lines per only! 1 bet)\n\nGame start TIMER\n");
+
+            for (int i = countdown; i > 0; i--)
+            {
+                Console.Write($"{i}");
+
+                for ( int j = 0; j < 3; j++)
+                {
+                    Console.Write($".");
+                    System.Threading.Thread.Sleep(timeBeforeNext);
+                }
+            }
         }
 
 
@@ -178,10 +191,11 @@ namespace slot_machine
         /// <returns></returns>
         public static char ShowContinueExitPrompt(char input)
         {
-            Console.WriteLine("\nWould you like to continue?\npress y to continue, any other key to exit");
+            Console.WriteLine("\nWould you like to continue?\npress Y to continue, any other key to exit");
             input = Char.ToUpper(Console.ReadKey().KeyChar);
             return input;
         }
+
     }
 }
 

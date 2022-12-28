@@ -20,12 +20,10 @@ class Program
         List<string> compliments = new List<string>
         { "Great choise!", "Awesome selection!", "Let's get to it!", "GOOD choise!", "You are a player!" };
         //making list const - creating error -- encouragement
-
         double balance = 20.0; //initial ballance
         char play = 'Y'; //game restart option
         ShowGreetingAndRules();
-        play = ShowContinueExitPrompt(play); //user's choise to continue playing or exit
-
+ 
         while (play == 'Y')
         //inside of the game after each bet
         {           
@@ -52,11 +50,11 @@ class Program
 
             bool totalWin = MAX_BALANCE <= balance;
             bool totalLoss = MIN_BALANCE >= balance;
-            //having this 2 lines at the beggining of loop is not catching totleLoss outcome 
+            //having this 2 lines at the beggining of loop is not catching totleLoss outcome
 
             if (totalLoss || totalWin)
             {
-                Console.WriteLine("Ballance is out of accepted range, more bets is not accepted. Press any key to exit");
+                Console.WriteLine("Ballance is out of range, insert your banking card to continue\n");//pressing any key will close the app
                 Console.ReadKey();
                 return;
             }
